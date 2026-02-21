@@ -409,6 +409,7 @@
       justify-content: center;
       padding: 16px;
       animation: fadeIn 0.2s ease;
+      touch-action: none;
     }
 
     .lightbox.is-open {
@@ -776,6 +777,7 @@
 
       var zoomState = { scale: 1, x: 0, y: 0 };
       var touchState = { startDist: 0, startScale: 1, lastX: 0, lastY: 0, lastTap: 0, swipeStartX: 0, swipeStartY: 0, touchStartTime: 0 };
+      var scrollPosition = 0;
 
       function resetZoom() {
         zoomState.scale = 1;
@@ -828,6 +830,7 @@
             zoomState.x += dx;
             zoomState.y += dy;
             applyZoomTransform();
+            e.preventDefault();
           }
         }, { passive: false });
 
@@ -892,7 +895,10 @@
         lightboxImg.alt = '장소 지도';
         lightbox.classList.add('is-open', 'lightbox--map');
         lightbox.setAttribute('aria-hidden', 'false');
+        scrollPosition = window.scrollY || document.documentElement.scrollTop;
         document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.top = '-' + scrollPosition + 'px';
       }
 
       galleryImages.forEach(function (path, i) {
@@ -912,7 +918,10 @@
           showLightboxImage(i);
           lightbox.classList.add('is-open');
           lightbox.setAttribute('aria-hidden', 'false');
+          scrollPosition = window.scrollY || document.documentElement.scrollTop;
           document.body.style.overflow = 'hidden';
+          document.body.style.position = 'fixed';
+          document.body.style.top = '-' + scrollPosition + 'px';
         });
         grid.appendChild(item);
       });
@@ -922,6 +931,9 @@
         lightbox.classList.remove('is-open', 'lightbox--map');
         lightbox.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        window.scrollTo(0, scrollPosition);
       }
 
       lightboxClose.addEventListener('click', closeLightbox);
@@ -936,6 +948,9 @@
       lightbox.addEventListener('click', function (e) {
         if (e.target === lightbox) closeLightbox();
       });
+      lightbox.addEventListener('touchmove', function (e) {
+        if (lightbox.classList.contains('is-open')) e.preventDefault();
+      }, { passive: false });
       document.addEventListener('keydown', function (e) {
         if (!lightbox.classList.contains('is-open')) return;
         if (e.key === 'Escape') closeLightbox();
