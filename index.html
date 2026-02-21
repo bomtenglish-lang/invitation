@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#fdf9f7" />
+  <title>정민이의 첫 생일잔치에 초대합니다</title>
+  <meta name="description" content="26년 4월 25일 토요일, 정민이의 첫 생일잔치에 초대합니다!" />
+
+  <!-- Open Graph (카카오톡, WhatsApp, 메신저 미리보기) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="정민이의 첫 생일잔치에 초대합니다" />
+  <meta property="og:description" content="26년 4월 25일 토요일, 정민이의 첫 생일잔치에 초대합니다!" />
+  <meta property="og:image" content="/picture/00.JPG" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:site_name" content="정민이 첫 생일잔치" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="정민이의 첫 생일잔치에 초대합니다" />
+  <meta name="twitter:description" content="26년 4월 25일 토요일, 정민이의 첫 생일잔치에 초대합니다!" />
+  <meta name="twitter:image" content="/picture/00.JPG" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Gowun+Batang:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #fdf9f7;
+      --cream: #f9f2ef;
+      --accent: #c9a89a;
+      --accent-soft: #e8ddd8;
+      --accent-pale: #f5ebe8;
+      --text: #3d3835;
+      --text-soft: #6b6560;
+      --shadow: rgba(61, 56, 53, 0.06);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Gowun Batang', 'Noto Serif KR', serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: 0 20px 40px;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 24px 0;
+    }
+
+    /* 메인 사진 */
+    .main-photo-wrap {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 8px 32px var(--shadow);
+      margin-bottom: 28px;
+      background: var(--cream);
+    }
+
+    .main-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .main-photo-wrap img[src=""],
+    .main-photo-wrap img:not([src]) {
+      min-height: 280px;
+      background: linear-gradient(135deg, var(--accent-pale) 0%, var(--cream) 100%);
+    }
+
+    /* 인사말 */
+    .greeting {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .greeting h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.5;
+    }
+
+    /* 일시·장소 카드 */
+    .info-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 20px var(--shadow);
+      border: 1px solid var(--accent-pale);
+    }
+
+    .info-card h2 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--accent-soft);
+    }
+
+    .info-card .date-time {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1em;
+    }
+
+    .mini-calendar {
+      width: 100%;
+      margin: 0 0 2em;
+      font-size: 0.75rem;
+      border-collapse: collapse;
+    }
+
+    .mini-calendar th {
+      padding: 6px 2px;
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 0.7rem;
+    }
+
+    .mini-calendar td {
+      width: 14.28%;
+      padding: 6px 2px;
+      text-align: center;
+      color: var(--text-soft);
+    }
+
+    .mini-calendar td.empty {
+      visibility: hidden;
+    }
+
+    .mini-calendar td.highlight span {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .mini-calendar caption {
+      padding-bottom: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .info-card .venue {
+      font-size: clamp(0.8rem, 3.5vw, 0.95rem);
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 8px;
+      word-break: keep-all;
+    }
+
+    .info-card .venue a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      word-break: break-all;
+    }
+
+    .info-card .venue a:hover {
+      text-decoration: underline;
+    }
+
+    .info-card .address-note {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+    }
+
+    .map-image-wrap {
+      position: relative;
+      width: 100%;
+      margin-top: 16px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--cream);
+      box-shadow: 0 2px 12px var(--shadow);
+      aspect-ratio: 4 / 3;
+    }
+
+    .map-image-wrap .map-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 30%;
+      background: rgba(0, 0, 0, 0.35);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      pointer-events: none;
+    }
+
+    .map-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .map-image-wrap.is-clickable {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 지도 버튼 (네이버 / 카카오맵 / T맵) */
+    .map-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .map-buttons .cta-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 12px 8px;
+      font-size: 0.82rem;
+      text-align: center;
+    }
+
+    .cta-wrap {
+      margin-top: 20px;
+    }
+
+    .cta-button {
+      display: block;
+      width: 100%;
+      padding: 16px 24px;
+      background: var(--accent);
+      color: #fff;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: center;
+      border: none;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(201, 168, 154, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .cta-button:active {
+      transform: scale(0.98);
+    }
+
+    .cta-button:hover {
+      box-shadow: 0 6px 20px rgba(201, 168, 154, 0.4);
+    }
+
+    /* 하단 문구 */
+    .footer-note {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      line-height: 1.8;
+      margin-top: 24px;
+      margin-bottom: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--accent-soft);
+    }
+
+    .footer-note p {
+      margin-bottom: 12px;
+    }
+
+    .footer-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .footer-note .parents-sign {
+      margin-top: 20px;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    /* 갤러리 */
+    .gallery-section {
+      margin-top: 40px;
+      padding-top: 28px;
+      border-top: 1px solid var(--accent-soft);
+    }
+
+    /* 축하 메세지 전하기 */
+    .message-section {
+      margin-top: 40px;
+      padding-top: 28px;
+      border-top: 1px solid var(--accent-soft);
+      text-align: center;
+    }
+
+    .message-section h2 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+    }
+
+    .message-section h2 .title-icon {
+      height: 1.5em;
+      width: auto;
+      display: block;
+    }
+
+    .message-section .btn-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .message-section .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      width: auto;
+    }
+
+    .gallery-section h2 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--cream);
+      cursor: pointer;
+      border: 3px solid #fff;
+      box-shadow: 0 2px 12px var(--shadow);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+
+    .gallery-item:active {
+      opacity: 0.9;
+    }
+
+    /* 라이트박스 (크게 보기) */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.92);
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .lightbox.is-open {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 44px;
+      height: 44px;
+      border: none;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 1.5rem;
+      line-height: 1;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border: none;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 1.5rem;
+      line-height: 1;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.2s;
+    }
+
+    .lightbox-prev:hover,
+    .lightbox-next:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .lightbox-prev {
+      left: 12px;
+    }
+
+    .lightbox-next {
+      right: 12px;
+    }
+
+    .lightbox-inner {
+      max-width: 100%;
+      max-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-inner img {
+      max-width: 100%;
+      max-height: 85vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .lightbox--map .lightbox-inner img {
+      transform: rotate(-90deg);
+      max-width: 100vh;
+      max-height: 100vw;
+    }
+
+    /* 오프닝 인트로 (딤드 + Happy Birthday 한 글자씩) */
+    .intro-dim {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: opacity 0.7s ease-out, visibility 0.7s;
+    }
+
+    .intro-dim.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-text {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.05em 0.08em;
+      font-family: 'Great Vibes', cursive;
+      color: #fff;
+      font-size: clamp(1.5rem, 6.8vw, 2.75rem);
+      line-height: 1.2;
+      max-width: 100%;
+    }
+
+    .intro-letter {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(40px) rotate(-12deg) scale(0.6);
+      animation: introLetterIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    .intro-letter.space {
+      width: 0.35em;
+      min-width: 8px;
+    }
+
+    @keyframes introLetterIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg) scale(1);
+      }
+    }
+
+    body.has-intro {
+      overflow: hidden;
+      height: 100vh;
+      height: 100dvh;
+    }
+  </style>
+</head>
+<body class="has-intro">
+  <!-- 오프닝: 딤드 + Happy Birthday 한 글자씩 휘날림 -->
+  <div class="intro-dim" id="introDim" aria-hidden="false">
+    <p class="intro-text" id="introText" aria-hidden="false" role="presentation"></p>
+  </div>
+
+  <script>
+    (function () {
+      var text = 'Happy Birthday';
+      var container = document.getElementById('introText');
+      var dim = document.getElementById('introDim');
+      if (!container || !dim) return;
+      var delayStep = 0.09;
+      for (var i = 0; i < text.length; i++) {
+        var span = document.createElement('span');
+        span.className = 'intro-letter' + (text[i] === ' ' ? ' space' : '');
+        span.style.animationDelay = (i * delayStep) + 's';
+        span.textContent = text[i];
+        container.appendChild(span);
+      }
+      var letterDuration = 0.6;
+      var totalLetterTime = (text.length - 1) * delayStep + letterDuration;
+      var holdTime = 1.4;
+      setTimeout(function () {
+        dim.classList.add('is-hidden');
+        dim.setAttribute('aria-hidden', 'true');
+        container.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('has-intro');
+      }, (totalLetterTime + holdTime) * 1000);
+    })();
+  </script>
+
+  <div class="page">
+    <div class="main-photo-wrap">
+      <img
+        src="./picture/00.JPG"
+        alt="정민이 첫 생일잔치 초대 사진"
+        fetchpriority="high"
+      />
+    </div>
+
+    <section class="greeting">
+      <h1>정민이의 첫 생일잔치에 초대합니다.</h1>
+    </section>
+
+    <div class="footer-note">
+      <p>정민이가 무럭무럭 자라<br />
+      어느덧 첫번째 생일을 맞이하였습니다.<br /></p>
+      <p>사랑과 관심으로 지켜봐주신 소중한 분들께<br />
+      감사의 마음으로 작은 자리를 마련하였습니다.</p>
+      <p>뜻깊은 날에 소중한 발걸음 하시어<br />
+      함께해 주시면 감사하겠습니다.</p>
+      <p class="parents-sign">아빠 유승범 ◦ 엄마 정진영</p>
+    </div>
+
+    <section class="info-card">
+      <h2>일시</h2>
+      <p class="date-time">26년 4월 25일 토요일 11시 30분</p>
+      <table class="mini-calendar" aria-label="26년 4월 달력">
+        <thead>
+          <tr>
+            <th scope="col">일</th>
+            <th scope="col">월</th>
+            <th scope="col">화</th>
+            <th scope="col">수</th>
+            <th scope="col">목</th>
+            <th scope="col">금</th>
+            <th scope="col">토</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+          </tr>
+          <tr>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td class="highlight"><span>25</span></td>
+          </tr>
+          <tr>
+            <td>26</td>
+            <td>27</td>
+            <td>28</td>
+            <td>29</td>
+            <td>30</td>
+            <td class="empty"></td>
+            <td class="empty"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>장소</h2>
+      <p class="venue">
+        더퍼스트클래스파티 강서NH서울타워점, 파티홀
+      </p>
+      <div class="map-image-wrap is-clickable" id="mapImageWrap" role="button" tabindex="0" aria-label="지도 크게 보기">
+        <span class="map-overlay">클릭하여 크게보기</span>
+        <img src="./map.png" alt="장소 지도" />
+      </div>
+      <div class="map-buttons">
+        <a class="cta-button" href="https://naver.me/5ss0AH07" target="_blank" rel="noopener noreferrer">📍 네이버</a>
+        <a class="cta-button" href="https://kko.to/xT91Etab9e" target="_blank" rel="noopener noreferrer">📍 카카오맵</a>
+        <a class="cta-button" href="https://tmap.life/929fb929" target="_blank" rel="noopener noreferrer">📍 T맵</a>
+      </div>
+    </section>
+
+    <!-- 갤러리 -->
+    <section class="gallery-section" id="gallery">
+      <h2>갤러리</h2>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <!-- 축하 메세지 전하기 -->
+    <section class="message-section">
+      <h2><img src="./katok.png" alt="" class="title-icon" />축하 메세지 전하기</h2>
+      <div class="btn-wrap">
+        <a class="cta-button" href="kakaotalk://send?phonenumber=01051616106" target="_blank" rel="noopener noreferrer">아빠에게 카톡하기</a>
+        <a class="cta-button" href="kakaotalk://send?phonenumber=01064196535" target="_blank" rel="noopener noreferrer">엄마에게 카톡하기</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- 라이트박스: 사진 크게 보기 -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="닫기">×</button>
+    <button type="button" class="lightbox-prev" id="lightboxPrev" aria-label="이전 사진">‹</button>
+    <button type="button" class="lightbox-next" id="lightboxNext" aria-label="다음 사진">›</button>
+    <div class="lightbox-inner">
+      <img id="lightboxImg" src="" alt="" />
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var galleryImages = [
+        './picture/1.jpg',
+        './picture/2.jpg',
+        './picture/3.jpg',
+        './picture/4.jpg',
+        './picture/5.jpg',
+        './picture/6.jpg',
+        './picture/7.jpg',
+        './picture/8.jpg',
+        './picture/9.jpg',
+        './picture/10.jpg',
+        './picture/11.jpg',
+        './picture/12.jpg',
+        './picture/13.jpg',
+        './picture/14.jpg',
+        './picture/15.jpg',
+        './picture/16.jpg',
+        './picture/17.jpg',
+        './picture/18.jpg',
+        './picture/19.jpg',
+        './picture/20.jpg',
+        './picture/21.jpg',
+        './picture/22.jpg',
+        './picture/23.jpg',
+        './picture/24.jpg',
+        './picture/25.jpg',
+        './picture/26.jpg',
+        './picture/27.jpg'
+      ];
+
+      var grid = document.getElementById('galleryGrid');
+      var lightbox = document.getElementById('lightbox');
+      var lightboxImg = document.getElementById('lightboxImg');
+      var lightboxClose = document.getElementById('lightboxClose');
+      var lightboxPrev = document.getElementById('lightboxPrev');
+      var lightboxNext = document.getElementById('lightboxNext');
+      var currentIndex = 0;
+      var mapImagePath = './map.png';
+
+      function showLightboxImage(index) {
+        if (index < -1) index = galleryImages.length - 1;
+        if (index >= galleryImages.length) index = 0;
+        currentIndex = index;
+        if (index === -1) {
+          lightboxImg.src = mapImagePath;
+          lightboxImg.alt = '장소 지도';
+          lightbox.classList.add('lightbox--map');
+          return;
+        }
+        lightbox.classList.remove('lightbox--map');
+        var path = galleryImages[index];
+        lightboxImg.src = encodeURI(path);
+        lightboxImg.alt = '갤러리 사진 ' + (index + 1);
+      }
+
+      function goPrev() {
+        if (currentIndex === -1) {
+          showLightboxImage(galleryImages.length - 1);
+        } else {
+          showLightboxImage(currentIndex - 1);
+        }
+      }
+
+      function goNext() {
+        if (currentIndex === -1) {
+          showLightboxImage(0);
+        } else {
+          showLightboxImage(currentIndex + 1);
+        }
+      }
+
+      function openMapLightbox() {
+        currentIndex = -1;
+        lightboxImg.src = mapImagePath;
+        lightboxImg.alt = '장소 지도';
+        lightbox.classList.add('is-open', 'lightbox--map');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      galleryImages.forEach(function (path, i) {
+        var src = encodeURI(path);
+        var item = document.createElement('button');
+        item.type = 'button';
+        item.className = 'gallery-item';
+        item.setAttribute('aria-label', '사진 ' + (i + 1) + ' 크게 보기');
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = '갤러리 사진 ' + (i + 1);
+        img.loading = 'lazy';
+        item.appendChild(img);
+        item.addEventListener('click', function () {
+          currentIndex = i;
+          showLightboxImage(i);
+          lightbox.classList.add('is-open');
+          lightbox.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        });
+        grid.appendChild(item);
+      });
+
+      function closeLightbox() {
+        lightbox.classList.remove('is-open', 'lightbox--map');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightboxPrev.addEventListener('click', function (e) {
+        e.stopPropagation();
+        goPrev();
+      });
+      lightboxNext.addEventListener('click', function (e) {
+        e.stopPropagation();
+        goNext();
+      });
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') { e.preventDefault(); goPrev(); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); goNext(); }
+      });
+
+      var mapWrap = document.getElementById('mapImageWrap');
+      if (mapWrap) {
+        mapWrap.addEventListener('click', openMapLightbox);
+        mapWrap.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openMapLightbox(); }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
